@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+
 @RestController
 public class MultipleController {
 
     private final EmployeeService employeeService;
-    private final DepartmentService deptService;
+//    private final DepartmentService deptService;
 
-    public MultipleController(EmployeeService employeeService, DepartmentService deptService) {
+//    public MultipleController(EmployeeService employeeService, DepartmentService deptService) {
+//        this.employeeService = employeeService;
+//        this.deptService = deptService;
+//    }
+
+
+    public MultipleController(EmployeeService employeeService) {
         this.employeeService = employeeService;
-        this.deptService = deptService;
     }
 
     @GetMapping("empall")
@@ -53,31 +58,31 @@ public class MultipleController {
 
 // *****************************************************************************************************************************
 
-    @GetMapping("deptall")
-    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
-        return new ResponseEntity<>(deptService.findAllDepartments(), HttpStatus.OK);
-    }
-
-    @GetMapping("dept/{id}")
-    public ResponseEntity<DepartmentDto> getAllDepartmentsByIds(@PathVariable Integer id) {
-        System.out.println("GET DEPARTMENT HIT");
-        return new ResponseEntity<>(deptService.findDepartmentById(id)
-                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.OK);
-    }
-
-    @PostMapping("deptcreate")
-    public ResponseEntity<DepartmentDto> createDepartment(@Valid @RequestBody DepartmentDto departmentDto) {
-        System.out.println("CREATE DEPARTMENT HIT");
-        return new ResponseEntity<>(deptService.createDepartment(departmentDto), HttpStatus.CREATED);
-    }
-    @PutMapping("deptupdate/{id}")
-    public ResponseEntity<DepartmentDto> updateDepartment( @PathVariable Integer id,@Valid @RequestBody DepartmentDto departmentDto) {
-        return new ResponseEntity<>(deptService.updateDepartment(id, departmentDto)
-                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.CREATED);
-    }
-    @DeleteMapping("deptdelete/{id}")
-    public ResponseEntity<String> deleteDepartment( @PathVariable Integer id) {
-        return new ResponseEntity<>(deptService.deleteDepartmentById(id)
-                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.OK);
-    }
+//    @GetMapping("deptall")
+//    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
+//        return new ResponseEntity<>(deptService.findAllDepartments(), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("dept/{id}")
+//    public ResponseEntity<DepartmentDto> getAllDepartmentsByIds(@PathVariable Integer id) {
+//        System.out.println("GET DEPARTMENT HIT");
+//        return new ResponseEntity<>(deptService.findDepartmentById(id)
+//                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.OK);
+//    }
+//
+//    @PostMapping("deptcreate")
+//    public ResponseEntity<DepartmentDto> createDepartment(@Valid @RequestBody DepartmentDto departmentDto) {
+//        System.out.println("CREATE DEPARTMENT HIT");
+//        return new ResponseEntity<>(deptService.createDepartment(departmentDto), HttpStatus.CREATED);
+//    }
+//    @PutMapping("deptupdate/{id}")
+//    public ResponseEntity<DepartmentDto> updateDepartment( @PathVariable Integer id,@Valid @RequestBody DepartmentDto departmentDto) {
+//        return new ResponseEntity<>(deptService.updateDepartment(id, departmentDto)
+//                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.CREATED);
+//    }
+//    @DeleteMapping("deptdelete/{id}")
+//    public ResponseEntity<String> deleteDepartment( @PathVariable Integer id) {
+//        return new ResponseEntity<>(deptService.deleteDepartmentById(id)
+//                .orElseThrow(()->new DepartmentNotFoundException("Department","id",id)),HttpStatus.OK);
+//    }
 }
