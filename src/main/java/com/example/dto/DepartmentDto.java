@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DepartmentDto {
+
     private Integer id;
    @NotNull(message = "Please give a valid Department name")
    @NotBlank(message = "Please give a valid Department name")

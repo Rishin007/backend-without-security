@@ -47,7 +47,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Optional<DepartmentDto> updateDepartment(Integer id, DepartmentDto departmentDto) {
         if(deptRepo.findById(id).isPresent()) {
             Department dept = deptRepo.findById(id).get();
-            dept.setId(departmentDto.getId());
+            dept.setId(id);
             dept.setName(departmentDto.getName());
             dept.setDescription(departmentDto.getDescription());
             deptRepo.save(dept);
